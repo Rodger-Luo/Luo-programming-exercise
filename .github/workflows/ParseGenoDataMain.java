@@ -29,23 +29,22 @@ public class ParseGenoDataMain extends Thread
 	static final String COLON = ":";
 	static final String ANGLE_BRACKET = ">";
 
-	//file name
-	static final String FILE_NAME = "sample.vcf";
-
 	//define pattern for column split
 	private static final Pattern tabSplitter = Pattern.compile("\t");	
 	//store the line number for error or exception check
-	int lineNum = 0;
-
+	private int lineNum = 0;
+	//the name of the file that store data for parsing
+	static String fileName;
+	
 	public void run()
-   	{
+    {
 		try  
 		{  
 			/*
 			 * creates a file instance, reads the file, creates a buffering input stream and 
 			 * constructs a string buffer to read a data record in the file.
 			 */
-			BufferedReader buffReader = new BufferedReader(new FileReader(new File(FILE_NAME)));   
+			BufferedReader buffReader = new BufferedReader(new FileReader(new File(fileName)));   
 			StringBuffer strBuffer = new StringBuffer();
 			
 			String dataRecord;
@@ -81,15 +80,21 @@ public class ParseGenoDataMain extends Thread
 		{
 			ex.printStackTrace();
 		}
-	}
+    }
 
 	public static void main(String args[]) throws Exception
 	{  
 		ParseGenoDataMain mainThread = new ParseGenoDataMain();
 				
 		try  
-		{  
-			mainThread.start();
+		{
+			if (args != null && args.length > 0)
+			{
+				fileName = args[0];
+				mainThread.start();
+			} else{
+				System.out.print("No file name provided. Please type a full data file name including suffix.");
+			}
 		} 
 		catch(Exception ex)  
 		{  
@@ -103,7 +108,7 @@ public class ParseGenoDataMain extends Thread
 	 * @param line a data record from the file
 	 * @return the parsed string in the format: chr<CHROM>:<POS><REF>><ALT>
 	 * @throws IllegalArgumentException
-	*/
+    */
 	public String parseLine(String line) throws IOException
 	{
 		try
@@ -145,7 +150,7 @@ public class ParseGenoDataMain extends Thread
 	 * @param pattern the tab pattern
 	 * @param string the data record from the file
 	 * @return a list containing the tab seperated data in a record
-	 */
+    */
 	private List<String> toList(Pattern pattern, String string)
 	{
 		String[] array = pattern.split(string);
