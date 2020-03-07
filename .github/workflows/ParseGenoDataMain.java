@@ -37,7 +37,7 @@ public class ParseGenoDataMain extends Thread
 	static String fileName;
 	
 	public void run()
-    {
+    	{
 		try  
 		{  
 			/*
@@ -80,7 +80,7 @@ public class ParseGenoDataMain extends Thread
 		{
 			ex.printStackTrace();
 		}
-    }
+    	}
 
 	public static void main(String args[]) throws Exception
 	{  
@@ -108,7 +108,7 @@ public class ParseGenoDataMain extends Thread
 	 * @param line a data record from the file
 	 * @return the parsed string in the format: chr<CHROM>:<POS><REF>><ALT>
 	 * @throws IllegalArgumentException
-    */
+    	 */
 	public String parseLine(String line) throws IOException
 	{
 		try
@@ -150,7 +150,7 @@ public class ParseGenoDataMain extends Thread
 	 * @param pattern the tab pattern
 	 * @param string the data record from the file
 	 * @return a list containing the tab seperated data in a record
-    */
+   	 */
 	private List<String> toList(Pattern pattern, String string)
 	{
 		String[] array = pattern.split(string);
