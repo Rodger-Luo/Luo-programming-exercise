@@ -28,17 +28,17 @@ public class ParseGenoDataMain extends Thread
 	static final String CHROMOSOME = "chr";
 	static final String COLON = ":";
 	static final String ANGLE_BRACKET = ">";
-	
+
 	//file name
 	static final String FILE_NAME = "sample.vcf";
-	
+
 	//define pattern for column split
 	private static final Pattern tabSplitter = Pattern.compile("\t");	
 	//store the line number for error or exception check
 	int lineNum = 0;
-	
+
 	public void run()
-    {
+   	{
 		try  
 		{  
 			/*
@@ -81,7 +81,7 @@ public class ParseGenoDataMain extends Thread
 		{
 			ex.printStackTrace();
 		}
-    }
+	}
 
 	public static void main(String args[]) throws Exception
 	{  
@@ -103,7 +103,7 @@ public class ParseGenoDataMain extends Thread
 	 * @param line a data record from the file
 	 * @return the parsed string in the format: chr<CHROM>:<POS><REF>><ALT>
 	 * @throws IllegalArgumentException
-    */
+	*/
 	public String parseLine(String line) throws IOException
 	{
 		try
@@ -145,7 +145,7 @@ public class ParseGenoDataMain extends Thread
 	 * @param pattern the tab pattern
 	 * @param string the data record from the file
 	 * @return a list containing the tab seperated data in a record
-    */
+	 */
 	private List<String> toList(Pattern pattern, String string)
 	{
 		String[] array = pattern.split(string);
