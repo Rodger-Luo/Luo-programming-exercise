@@ -14,9 +14,13 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * This program reads and parses a genomic data file in Variant Call Format and combine the fields
- * into the format chr<CHROM>:<POS><REF>><ALT>, for example, chr16:11178640G>A. The program ignores
- * the metadata marked by ## and the column headings marked by # in the file that.
+ * This program reads and parses a genomic data file in Variant Call Format from a command line and
+ * combine the fields into the format chr<CHROM>:<POS><REF>><ALT>, for example, chr16:11178640G>A.
+ * The program ignores the metadata marked by ## and the column headings marked by # in the file.
+ *
+ * At the command line, navigate to the directory where the program and data file are located and compile
+ * the program, then type: java ParseGenoDataMain <full file name>. The newly formatted data is saved in 
+ * the file output.txt.
  *
  * @author Rodger Luo
  * @version 1.0
